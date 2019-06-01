@@ -1,1 +1,0 @@
-python3 /Users/nicolomolinari/PycharmProjects/PenTest/rsh.py
